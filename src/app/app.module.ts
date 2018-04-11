@@ -138,6 +138,7 @@ import {IfGeoBonDirective} from './util/directives/if-geobon.directive';
 import {OlDrawFeaturesComponent} from './operators/dialogs/draw-features/ol-draw-features.component';
 import {CountryPolygonSelectionComponent} from './operators/dialogs/country-polygon-selection/country-polygon-selection.component';
 import {HttpModule} from '@angular/http';
+import {CodeEditorOverlayComponent} from './util/components/code-editor-overlay/code-editor-overlay.component';
 
 export function configInitializer(config: Config) {
     return () => config.load();
@@ -255,7 +256,8 @@ export function configInitializer(config: Config) {
         RasterPolygonClipOperatorComponent,
         FeedbackComponent,
         OlDrawFeaturesComponent,
-        CountryPolygonSelectionComponent
+        CountryPolygonSelectionComponent,
+        CodeEditorOverlayComponent,
     ],
     imports: [
         BrowserModule,
@@ -315,6 +317,7 @@ export function configInitializer(config: Config) {
         RasterPolygonClipOperatorComponent,
         OlDrawFeaturesComponent,
         CountryPolygonSelectionComponent,
+        CodeEditorOverlayComponent,
     ],
     providers: [
         DragulaService,

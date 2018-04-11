@@ -10,6 +10,7 @@ import * as CodeMirror from 'codemirror';
 // import all possible modes
 import 'codemirror/mode/r/r';
 import {NG_VALUE_ACCESSOR, ControlValueAccessor} from "@angular/forms";
+import {CodeEditorOverlayService} from './code-editor-overlay/code-editor-overlay.service';
 
 const LANGUAGES = ['r'];
 
@@ -20,6 +21,7 @@ const LANGUAGES = ['r'];
     selector: 'wave-code-editor',
     template: `
     <textarea #editor></textarea>
+    <button mat-raised-button (click)="maximize()"><mat-icon>fullscreen</mat-icon></button>
     `,
     styles: [`
     :host {
@@ -31,6 +33,7 @@ const LANGUAGES = ['r'];
     }
     `],
     providers: [ {provide: NG_VALUE_ACCESSOR, useExisting: CodeEditorComponent, multi: true,},
+        CodeEditorOverlayService,
     ],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -46,6 +49,8 @@ export class CodeEditorComponent
 
     private onTouched: () => void;
     private changeSubscription: Subscription;
+
+    constructor(private overlay: CodeEditorOverlayService) {}
 
     ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
         if (this.editor) {
@@ -147,5 +152,9 @@ export class CodeEditorComponent
         if (this.onTouched) {
             this.onTouched = fn;
         }
+    }
+
+    maximize() {
+        this.overlay.open();
     }
 }
