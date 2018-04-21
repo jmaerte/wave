@@ -12,8 +12,8 @@ interface CodeEditorConfig {
 
 const DEFAULT_CONFIG: CodeEditorConfig = {
     hasBackdrop: true,
-    backdropClass: 'cdk-overlay-dark-backdrop',
-    panelClass: 'code-editor-dialog-panel',
+    backdropClass: 'dark-backdrop',
+    panelClass: '',
 };
 
 @Injectable()
