@@ -143,6 +143,7 @@ import {SymbologyEditorComponent} from './layers/symbology/symbology-editor/symb
 import {SymbologyRasterMappingColorizerComponent} from './layers/symbology/symbology-raster/symbology-raster-mapping-colorizer.component';
 import {ColorizerEditorComponent} from './layers/symbology/symbology-raster/colorizer-editor.component';
 import {HeatmapOperatorComponent} from './operators/dialogs/heatmap/heatmap.component';
+import {RQuickHelpComponent} from './operators/dialogs/r/r-quick-help/r-quick-help.component';
 
 export function configInitializer(config: Config) {
     return () => config.load();
@@ -268,6 +269,7 @@ export function configInitializer(config: Config) {
         HeatmapOperatorComponent,
         CountryPolygonSelectionComponent,
         CodeEditorOverlayComponent,
+        RQuickHelpComponent,
     ],
     imports: [
         BrowserModule,

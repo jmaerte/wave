@@ -22,6 +22,7 @@ import {RScriptSaveComponent, RScriptSaveComponentConfig} from '../r-script-save
 import {RScriptLoadComponent, RScriptLoadResult} from '../r-script-load/r-script-load.component';
 import {Config} from '../../../../config.service';
 import {WaveValidators} from '../../../../util/form.validators';
+import {CodeEditorOverlayComponent} from '../../../../util/components/code-editor-overlay/code-editor-overlay.component';
 
 @Component({
     selector: 'wave-r-operator',
@@ -275,4 +276,17 @@ export class ROperatorComponent implements OnInit, AfterViewInit {
 
     }
 
+    maximize() {
+        const dialogRef = this.dialog.open(CodeEditorOverlayComponent, {
+            panelClass: 'code-editor-dialog',
+            data: {
+                code: this.form.controls['code'].value,
+                resultType: this.form.controls['resultType'].value,
+            },
+            height: '100%',
+            width: '100%',
+            maxWidth: '100vw',
+            maxHeight: '100vh'
+        });
+    }
 }
