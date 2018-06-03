@@ -1,6 +1,5 @@
-:host {
-    display: block;
-}
-:host ::ng-deep .CodeMirror {
-    border: 1px solid #eee;
+mat-dialog-content {
+    max-height: unset;
+    max-width: unset;
+    padding-left: 0px;
 }

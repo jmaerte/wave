@@ -5,16 +5,23 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ResultTypes} from '../../../operators/result-type.model';
 import {WaveValidators} from '../../form.validators';
 import {MAT_DIALOG_DATA} from '@angular/material';
+import {ReplaySubject} from 'rxjs';
+import {LayoutService} from '../../../layout.service';
 
 @Component({
     selector: 'wave-code-editor-overlay',
     templateUrl: 'code-editor-overlay.component.html',
     styleUrls: ['code-editor-overlay.style.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    host: {
+        '(window:resize)': 'onResize($event)'
+    }
 })
 export class CodeEditorOverlayComponent implements AfterViewInit, OnInit {
 
     form: FormGroup;
+    maxHeight$ = new ReplaySubject<number>(1);
+    name: string;
 
     @ViewChild(CodeEditorComponent) editor: CodeEditorComponent;
 
@@ -23,15 +30,26 @@ export class CodeEditorOverlayComponent implements AfterViewInit, OnInit {
             code: [this.data.code, Validators.required],
             resultType: [this.data.resultType, Validators.required],
         });
+        this.name = data.name;
     }
 
     ngOnInit() {
+        this.maxHeight$.subscribe(val => {
+            this.editor.setHeight(val + 'px');
+            this.editor.refresh();
+        });
     }
 
     ngAfterViewInit() {
         setTimeout(() => {
-            this.editor.setHeight('80vh');
-            this.editor.refresh();
+            this.maxHeight$.next(window.innerHeight - 2 * LayoutService.remInPx() - LayoutService.getToolbarHeightPx());
+        });
+    }
+
+    onResize(event: Event) {
+        console.log(event);
+        setTimeout(() => {
+            this.maxHeight$.next(window.innerHeight - 2 * LayoutService.remInPx() - LayoutService.getToolbarHeightPx());
         });
     }
 }

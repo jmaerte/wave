@@ -1,9 +1,8 @@
-<form [formGroup]="form" fxLayout="row" fxLayoutAlign="space-between none" >
-    <wave-code-editor language="r" formControlName="code" style="min-width: calc(70% - 1rem); min-height: 95vh"></wave-code-editor>
-    <span fxFlex="1rem"></span>
-    <wave-r-quick-help style="max-width: 30%"></wave-r-quick-help>
-</form>
-<mat-dialog-actions align="end">
-    <button mat-raised-button>Save</button>
-    <button mat-raised-button>Discard</button>
-</mat-dialog-actions>
+<wave-dialog-header>{{name}}</wave-dialog-header>
+<mat-dialog-content style="margin-top: 1rem">
+    <form [formGroup]="form" fxLayout="row" fxLayoutAlign="space-between none">
+        <wave-code-editor language="r" formControlName="code" style="min-width: calc(70% - 1rem); min-height: 95vh"></wave-code-editor>
+        <span fxFlex="1rem"></span>
+        <wave-r-quick-help style="max-width: 30%"></wave-r-quick-help>
+    </form>
+</mat-dialog-content>

@@ -46,7 +46,7 @@
 
         <wave-code-editor language="r" formControlName="code"></wave-code-editor>
 
-        <button mat-raised-button (click)="maximize()"><mat-icon>fullscreen</mat-icon></button>
+        <button mat-raised-button (click)="$event.preventDefault(); maximize()"><mat-icon>fullscreen</mat-icon></button>
 
         <div fxLayout="row" class="load-save" *waveIfLoggedIn>
             <button mat-raised-button type="button" fxFlex (click)="load()">Load Script</button>
