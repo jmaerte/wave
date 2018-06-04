@@ -42,14 +42,14 @@ export class CodeEditorOverlayComponent implements AfterViewInit, OnInit {
 
     ngAfterViewInit() {
         setTimeout(() => {
-            this.maxHeight$.next(window.innerHeight - 2 * LayoutService.remInPx() - LayoutService.getToolbarHeightPx());
+            this.maxHeight$.next(window.innerHeight - 2 * (LayoutService.remInPx() + LayoutService.getToolbarHeightPx()));
         });
     }
 
     onResize(event: Event) {
         console.log(event);
         setTimeout(() => {
-            this.maxHeight$.next(window.innerHeight - 2 * LayoutService.remInPx() - LayoutService.getToolbarHeightPx());
+            this.maxHeight$.next(window.innerHeight - 2 * (LayoutService.remInPx() + LayoutService.getToolbarHeightPx()));
         });
     }
 }
