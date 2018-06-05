@@ -3,3 +3,7 @@ mat-dialog-content {
     max-width: unset;
     padding-left: 0px;
 }
+
+.actions {
+    padding: 1rem;
+}

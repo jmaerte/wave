@@ -277,18 +277,28 @@ export class ROperatorComponent implements OnInit, AfterViewInit {
     }
 
     maximize() {
-        this.dialog.open(
+        const dialogRef = this.dialog.open(
             CodeEditorOverlayComponent,
             {
                 data: {
                     code: this.form.controls['code'].value,
-                    resultType: this.form.controls['resultType'].value,
                     name: this.form.controls['name'].value,
+                    lineLayers: this.editableSourceLines,
+                    pointLayers: this.editableSourcePoints,
+                    polygonLayers: this.editableSourcePolygons,
+                    rasterLayers: this.editableSourceRasters,
                 },
                 maxHeight: '100vh',
                 maxWidth: '100vw',
                 width: '100vw'
             },
         );
+        const s = dialogRef.componentInstance.code.subscribe(code => {
+            this.form.controls['code'].setValue(code);
+            dialogRef.close();
+        });
+        dialogRef.afterClosed().subscribe(() => {
+            s.unsubscribe();
+        });
     }
 }
