@@ -3,7 +3,14 @@
     <form [formGroup]="form" fxLayout="row" fxLayoutAlign="space-between none">
         <wave-code-editor language="r" formControlName="code" style="min-width: calc(70% - 1rem)"></wave-code-editor>
         <span fxFlex="1rem"></span>
-        <wave-r-quick-help style="max-width: 30%"></wave-r-quick-help>
+        <div fxLayout="column" style="max-width: 30%">
+            <wave-r-quick-help></wave-r-quick-help>
+            <span fxFlex="1rem"></span>
+            <wave-code-layer-selector [type]="'Point Layers'" [list]="data.pointLayers" [codeQualifier]="'Points'"></wave-code-layer-selector>
+            <wave-code-layer-selector [type]="'Line Layers'" [list]="data.lineLayers" [codeQualifier]="'Lines'"></wave-code-layer-selector>
+            <wave-code-layer-selector [type]="'Raster Layers'" [list]="data.rasterLayers" [codeQualifier]="'Raster'"></wave-code-layer-selector>
+            <wave-code-layer-selector [type]="'Polygon Layers'" [list]="data.polygonLayers" [codeQualifier]="'Polygons'"></wave-code-layer-selector>
+        </div>
     </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end" class="actions">

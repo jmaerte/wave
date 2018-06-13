@@ -58,7 +58,6 @@ export class CodeEditorOverlayComponent implements AfterViewInit, OnInit {
     }
 
     onResize(event: Event) {
-        console.log(event);
         setTimeout(() => {
             this.maxHeight$.next(window.innerHeight - LayoutService.remInPx() - 2 * LayoutService.getToolbarHeightPx());
         });

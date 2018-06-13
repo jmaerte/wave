@@ -144,6 +144,9 @@ import {SymbologyRasterMappingColorizerComponent} from './layers/symbology/symbo
 import {ColorizerEditorComponent} from './layers/symbology/symbology-raster/colorizer-editor.component';
 import {HeatmapOperatorComponent} from './operators/dialogs/heatmap/heatmap.component';
 import {RQuickHelpComponent} from './operators/dialogs/r/r-quick-help/r-quick-help.component';
+import {CodeLayerSelectorComponent} from './util/components/code-editor-overlay/code-layer-selector.component';
+import {CopyClipboardDirective} from './util/components/code-editor-overlay/copy-clipboard.directive';
+import {CopyClipboardModule} from './util/components/code-editor-overlay/copy-clipboard.module';
 
 export function configInitializer(config: Config) {
     return () => config.load();
@@ -270,6 +273,7 @@ export function configInitializer(config: Config) {
         CountryPolygonSelectionComponent,
         CodeEditorOverlayComponent,
         RQuickHelpComponent,
+        CodeLayerSelectorComponent,
     ],
     imports: [
         BrowserModule,
@@ -282,6 +286,7 @@ export function configInitializer(config: Config) {
         DragulaModule,
         ReactiveFormsModule,
         ColorPickerModule,
+        CopyClipboardModule,
         HttpModule,
     ],
     entryComponents: [
