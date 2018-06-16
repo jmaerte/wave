@@ -1,9 +1,9 @@
 <wave-dialog-header>{{name}}</wave-dialog-header>
 <mat-dialog-content style="margin-top: 1rem">
-    <form [formGroup]="form" fxLayout="row" fxLayoutAlign="space-between none">
+    <form [formGroup]="form" fxLayout="row" fxLayout.sm="column" fxLayoutAlign="space-between none">
         <wave-code-editor language="r" formControlName="code" style="min-width: calc(70% - 1rem)"></wave-code-editor>
         <span fxFlex="1rem"></span>
-        <div fxLayout="column" style="max-width: 30%">
+        <div fxLayout="column" style="max-width: 30%" #scrollContainer>
             <wave-r-quick-help></wave-r-quick-help>
             <span fxFlex="1rem"></span>
             <wave-code-layer-selector [type]="'Point Layers'" [list]="data.pointLayers" [codeQualifier]="'Points'"></wave-code-layer-selector>

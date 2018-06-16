@@ -34,6 +34,7 @@ export class CodeEditorOverlayComponent implements AfterViewInit, OnInit {
     name: string;
 
     @ViewChild(CodeEditorComponent) editor: CodeEditorComponent;
+    @ViewChild('scrollContainer') scrollContainer: HTMLDivElement;
 
     @Output() code: EventEmitter<string> = new EventEmitter<string>();
 
@@ -52,6 +53,9 @@ export class CodeEditorOverlayComponent implements AfterViewInit, OnInit {
     }
 
     ngAfterViewInit() {
+        this.maxHeight$.subscribe(val => {
+            this.scrollContainer.style.setProperty('max-height', val + 'px');
+        });
         setTimeout(() => {
             this.maxHeight$.next(window.innerHeight - LayoutService.remInPx() - 2 * LayoutService.getToolbarHeightPx());
         });
