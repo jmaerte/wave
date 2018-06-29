@@ -1,0 +1,17 @@
+table {
+    display: block;
+    width: 100%;
+    overflow: auto;
+}
+
+mat-panel-title,
+mat-panel-description {
+    line-height: 1.5rem;
+}
+
+mat-panel-title mat-icon {
+    margin-right: 0.25rem;
+}
+mat-card-content {
+    text-align: justify;
+}

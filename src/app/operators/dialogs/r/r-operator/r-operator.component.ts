@@ -290,7 +290,8 @@ export class ROperatorComponent implements OnInit, AfterViewInit {
                 },
                 maxHeight: '100vh',
                 maxWidth: '100vw',
-                width: '100vw'
+                width: '100vw',
+                disableClose: true,
             },
         );
         const s = dialogRef.componentInstance.code.subscribe(code => {
@@ -298,6 +299,7 @@ export class ROperatorComponent implements OnInit, AfterViewInit {
             dialogRef.close();
         });
         dialogRef.afterClosed().subscribe(() => {
+            // TODO: Close dialog
             s.unsubscribe();
         });
     }

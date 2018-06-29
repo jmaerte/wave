@@ -92,6 +92,7 @@ import {Component} from '@angular/core';
             </table>
             <p>An example is <code>mapping.loadRaster(0, mapping.qrect)</code> for accessing the first raster.</p>
         </mat-card-content>
-    </mat-expansion-panel>`
+    </mat-expansion-panel>`,
+    styleUrls: ['./r-quick-help.component.scss'],
 })
 export class RQuickHelpComponent {}

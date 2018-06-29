@@ -1,18 +1,27 @@
 <wave-dialog-header>{{name}}</wave-dialog-header>
-<mat-dialog-content style="margin-top: 1rem">
-    <form [formGroup]="form" fxLayout="row" fxLayout.sm="column" fxLayoutAlign="space-between none">
-        <wave-code-editor language="r" formControlName="code" style="min-width: calc(70% - 1rem)"></wave-code-editor>
-        <span fxFlex="1rem"></span>
-        <div fxLayout="column" style="max-width: 30%" #scrollContainer>
-            <wave-r-quick-help></wave-r-quick-help>
-            <span fxFlex="1rem"></span>
-            <wave-code-layer-selector [type]="'Point Layers'" [list]="data.pointLayers" [codeQualifier]="'Points'"></wave-code-layer-selector>
-            <wave-code-layer-selector [type]="'Line Layers'" [list]="data.lineLayers" [codeQualifier]="'Lines'"></wave-code-layer-selector>
-            <wave-code-layer-selector [type]="'Raster Layers'" [list]="data.rasterLayers" [codeQualifier]="'Raster'"></wave-code-layer-selector>
-            <wave-code-layer-selector [type]="'Polygon Layers'" [list]="data.polygonLayers" [codeQualifier]="'Polygons'"></wave-code-layer-selector>
-        </div>
-    </form>
+<mat-dialog-content [ngStyle]="{'max-height': (maxHeight$ | async), 'min-height': (maxHeight$ | async), 'min-width': (maxWidth$ | async)}">
+<mat-sidenav-container [ngStyle]="{'min-height': (maxHeight$ | async)}">
+    <mat-sidenav #sidenav position="end" mode="side" style="width: 500px">
+        <mat-tab-group headerPosition="below" mat-stretch-tabs [ngStyle]="{'min-height': (maxHeight$ | async)}">
+            <mat-tab label="Quick Help">
+                <div fxLayout="column" style="overflow-y: auto; float: top;">
+                    <wave-r-quick-help></wave-r-quick-help>
+                </div>
+            </mat-tab>
+            <mat-tab label="Layer Import">
+                <div fxLayout="column" style="overflow-y: auto">
+                    <wave-code-layer-selector [type]="'Point Layers'" [list]="data.pointLayers" [codeQualifier]="'Points'"></wave-code-layer-selector>
+                    <wave-code-layer-selector [type]="'Line Layers'" [list]="data.lineLayers" [codeQualifier]="'Lines'"></wave-code-layer-selector>
+                    <wave-code-layer-selector [type]="'Raster Layers'" [list]="data.rasterLayers" [codeQualifier]="'Raster'"></wave-code-layer-selector>
+                    <wave-code-layer-selector [type]="'Polygon Layers'" [list]="data.polygonLayers" [codeQualifier]="'Polygons'"></wave-code-layer-selector>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-sidenav>
+        <form [formGroup]="form" [ngStyle]="{'min-height': (maxHeight$ | async)}" fxLayout="column" fxLayoutGap="0px" fxLayoutAlign="start end">
+            <wave-code-editor language="r" formControlName="code" [ngStyle]="{'min-width': (maxWidth$ | async), 'max-width': (maxWidth$ | async),
+            'min-height': (editorHeight$ | async), 'max-height': (editorHeight$ | async)}"></wave-code-editor>
+            <wave-code-navigator [sidenav]="sidenav" (close)="minimize()" style="padding-right: 1rem"></wave-code-navigator>
+        </form>
+</mat-sidenav-container>
 </mat-dialog-content>
-<mat-dialog-actions align="end" class="actions">
-    <button mat-raised-button (click)="minimize()"><mat-icon>fullscreen_exit</mat-icon></button>
-</mat-dialog-actions>

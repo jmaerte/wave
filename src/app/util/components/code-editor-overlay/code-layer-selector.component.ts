@@ -1,14 +1,6 @@
-import {Component, ChangeDetectionStrategy, ViewChild, AfterViewInit, OnInit, Inject, Output, EventEmitter, Input} from '@angular/core';
-import {CodeEditorComponent} from '../code-editor.component';
-import {RScriptDict} from '../../../storage/storage-provider.model';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ResultTypes} from '../../../operators/result-type.model';
-import {WaveValidators} from '../../form.validators';
-import {MAT_DIALOG_DATA, MatSnackBar} from '@angular/material';
-import {ReplaySubject} from 'rxjs/ReplaySubject';
-import {LayoutService} from '../../../layout.service';
+import {Component, ChangeDetectionStrategy, Input} from '@angular/core';
+import {MatSnackBar} from '@angular/material';
 import {Operator} from '../../../operators/operator.model';
-import {CopyClipboardDirective} from './copy-clipboard.directive';
 
 export interface CodeSetup {
     code: string;
@@ -31,7 +23,7 @@ export interface CodeSetup {
                 <mat-panel-description>Import {{type}} into your R Code.</mat-panel-description>
             </mat-expansion-panel-header>
             <mat-card-content>
-                <table style="min-width: 100%">
+                <table>
                     <tr *ngFor="let op of list; let i = index" fxLayout="row" fxLayoutAlign="space-between center">
                         {{op.name}}
                         <button mat-button color="primary"
@@ -43,7 +35,24 @@ export interface CodeSetup {
                 </table>
             </mat-card-content>
         </mat-expansion-panel>`,
-    styleUrls: [],
+    styles: [`
+        table {
+            min-width: 100%;
+            overflow: auto;
+        }
+
+        mat-panel-title,
+        mat-panel-description {
+            line-height: 1.5rem;
+        }
+
+        mat-panel-title mat-icon {
+            margin-right: 0.25rem;
+        }
+        mat-card-content {
+            text-align: justify;
+        }
+    `],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CodeLayerSelectorComponent {

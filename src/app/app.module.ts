@@ -147,6 +147,7 @@ import {RQuickHelpComponent} from './operators/dialogs/r/r-quick-help/r-quick-he
 import {CodeLayerSelectorComponent} from './util/components/code-editor-overlay/code-layer-selector.component';
 import {CopyClipboardDirective} from './util/components/code-editor-overlay/copy-clipboard.directive';
 import {CopyClipboardModule} from './util/components/code-editor-overlay/copy-clipboard.module';
+import {CodeNavigatorComponent} from './util/components/code-editor-overlay/code-navigator/code-navigator.component';
 
 export function configInitializer(config: Config) {
     return () => config.load();
@@ -274,6 +275,7 @@ export function configInitializer(config: Config) {
         CodeEditorOverlayComponent,
         RQuickHelpComponent,
         CodeLayerSelectorComponent,
+        CodeNavigatorComponent,
     ],
     imports: [
         BrowserModule,
