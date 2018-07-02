@@ -84,7 +84,7 @@ export class CodeEditorOverlayComponent implements AfterViewInit, OnInit {
         setTimeout(() => {
             this.maxHeight$.next(window.innerHeight - LayoutService.getToolbarHeightPx() + 'px');
             this.editorHeight$.next(window.innerHeight - LayoutService.getToolbarHeightPx() - this.matTabLableHeight + 'px');
-            this.maxWidth$.next(window.innerWidth + 'px');
+            this.maxWidth$.next(window.innerWidth - (this.sidenav.opened ? this.sidenav._width : 0) + 'px');
             this.changeDetector.detectChanges();
         });
     }

@@ -19,8 +19,8 @@
         </mat-tab-group>
     </mat-sidenav>
         <form [formGroup]="form" [ngStyle]="{'min-height': (maxHeight$ | async)}" fxLayout="column" fxLayoutGap="0px" fxLayoutAlign="start end">
-            <wave-code-editor language="r" formControlName="code" [ngStyle]="{'min-width': (maxWidth$ | async), 'max-width': (maxWidth$ | async),
-            'min-height': (editorHeight$ | async), 'max-height': (editorHeight$ | async)}"></wave-code-editor>
+            <wave-code-editor language="r" formControlName="code" [ngStyle]="{'min-height': (editorHeight$ | async), 'max-height': (editorHeight$ | async)}"
+            style="min-width: 100%; max-width: 100%;"></wave-code-editor>
             <wave-code-navigator [sidenav]="sidenav" (close)="minimize()" style="padding-right: 1rem"></wave-code-navigator>
         </form>
 </mat-sidenav-container>
