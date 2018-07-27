@@ -1,3 +1,5 @@
+@import "../../../../wave-app-theme";
+
 mat-dialog-content {
     max-width: unset;
     padding-left: 0px;
@@ -8,8 +10,9 @@ mat-sidenav-container {
     padding: 0px;
 }
 
-.mat-tab-body {
-    height: 100%;
+
+::ng-deep .mat-tab-body-wrapper {
+    flex-grow: 1;
 }
 
 .unset-height {
@@ -18,4 +21,9 @@ mat-sidenav-container {
 
 .actions {
     padding: 1rem;
+}
+.no-layers {
+    color: mat-color(map-get($wave-app-theme, foreground), secondary-text);
+    margin-top: 50%;
+    text-align: center;
 }

@@ -1,19 +1,23 @@
 <wave-dialog-header>{{name}}</wave-dialog-header>
 <mat-dialog-content [ngStyle]="{'max-height': (maxHeight$ | async), 'min-height': (maxHeight$ | async), 'min-width': (maxWidth$ | async)}">
 <mat-sidenav-container [ngStyle]="{'min-height': (maxHeight$ | async)}">
-    <mat-sidenav #sidenav position="end" mode="side" style="width: 500px">
+    <mat-sidenav #sidenav position="end" [mode]="sidenavMode$ | async" style="width: 500px">
         <mat-tab-group headerPosition="below" mat-stretch-tabs [ngStyle]="{'min-height': (maxHeight$ | async)}">
             <mat-tab label="Quick Help">
-                <div fxLayout="column" style="overflow-y: auto; float: top;">
-                    <wave-r-quick-help></wave-r-quick-help>
+                <div fxLayout="column" style="overflow-y: auto; float: top;" [ngStyle]="{'max-height': (editorHeight$ | async)}">
+                    <wave-r-quick-help [extend]="false"></wave-r-quick-help>
                 </div>
             </mat-tab>
             <mat-tab label="Layer Import">
-                <div fxLayout="column" style="overflow-y: auto">
+                <div fxLayout="column" style="overflow-y: auto" fxFlex>
                     <wave-code-layer-selector [type]="'Point Layers'" [list]="data.pointLayers" [codeQualifier]="'Points'"></wave-code-layer-selector>
                     <wave-code-layer-selector [type]="'Line Layers'" [list]="data.lineLayers" [codeQualifier]="'Lines'"></wave-code-layer-selector>
                     <wave-code-layer-selector [type]="'Raster Layers'" [list]="data.rasterLayers" [codeQualifier]="'Raster'"></wave-code-layer-selector>
                     <wave-code-layer-selector [type]="'Polygon Layers'" [list]="data.polygonLayers" [codeQualifier]="'Polygons'"></wave-code-layer-selector>
+                    <p *ngIf="data.pointLayers.length === 0 && data.lineLayers.length === 0 &&
+                                data.rasterLayers.length === 0 && data.polygonLayers.length === 0" class="no-layers">
+                        no layers available
+                    </p>
                 </div>
             </mat-tab>
         </mat-tab-group>

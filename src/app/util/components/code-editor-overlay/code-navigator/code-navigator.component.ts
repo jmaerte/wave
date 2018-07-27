@@ -10,11 +10,12 @@ import {MatSidenav} from '@angular/material';
     selector: 'wave-code-navigator',
     template: `
         <div fxLayout="row" fxLayoutGap="1rem" fxLayoutAlign="end center">
-            <button fxFlex mat-raised-button (click)="sidenav.open()">
-                <mat-icon>build</mat-icon>
-            </button>
             <button fxFlex mat-raised-button (click)="close.emit(true)">
                 <mat-icon>fullscreen_exit</mat-icon>
+            </button>
+            <button fxFlex mat-raised-button (click)="change()">
+                <mat-icon *ngIf="sidenav.opened">keyboard_arrow_right</mat-icon>
+                <mat-icon *ngIf="!sidenav.opened">keyboard_arrow_left</mat-icon>
             </button>
         </div>
     `,
@@ -40,5 +41,13 @@ import {MatSidenav} from '@angular/material';
 export class CodeNavigatorComponent {
 
     @Input() sidenav: MatSidenav;
-    @Output() close: EventEmitter<boolean> = new EventEmitter<boolean>()
+    @Output() close: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+    change() {
+        if(this.sidenav.opened) {
+            this.sidenav.close();
+        } else {
+            this.sidenav.open();
+        }
+    }
 }
